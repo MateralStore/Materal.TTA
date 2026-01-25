@@ -1,8 +1,8 @@
 ﻿global using Materal.Abstractions;
-global using Materal.Extensions;
 global using Materal.TTA.Common;
 global using Materal.Utils.Enums;
-global using Materal.Utils.Model;
+global using Materal.Utils.Extensions;
+global using Materal.Utils.Models;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;

@@ -94,7 +94,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        List<TEntity> Find(Expression<Func<TEntity, bool>> expression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder);
+        List<TEntity> Find(Expression<Func<TEntity, bool>> expression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 查找
         /// </summary>
@@ -102,7 +102,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder);
+        Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 查找
         /// </summary>
@@ -136,7 +136,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        List<TEntity> Find(FilterModel filterModel, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder);
+        List<TEntity> Find(FilterModel filterModel, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 查找
         /// </summary>
@@ -144,7 +144,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        Task<List<TEntity>> FindAsync(FilterModel filterModel, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder);
+        Task<List<TEntity>> FindAsync(FilterModel filterModel, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 获取第一条
         /// </summary>
@@ -226,7 +226,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        (List<TEntity> data, PageModel pageInfo) Paging(PageRequestModel pageRequestModel, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder);
+        (List<TEntity> data, PageModel pageInfo) Paging(PageRequestModel pageRequestModel, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -234,7 +234,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        Task<(List<TEntity> data, PageModel pageInfo)> PagingAsync(PageRequestModel pageRequestModel, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder);
+        Task<(List<TEntity> data, PageModel pageInfo)> PagingAsync(PageRequestModel pageRequestModel, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -289,7 +289,7 @@
         /// <param name="sortOrder">排序方式</param>
         /// <param name="pageRequestModel">分页查询请求模型</param>
         /// <returns></returns>
-        (List<TEntity> data, PageModel pageInfo) Paging(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder, PageRequestModel pageRequestModel);
+        (List<TEntity> data, PageModel pageInfo) Paging(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder, PageRequestModel pageRequestModel);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -298,7 +298,7 @@
         /// <param name="sortOrder">排序方式</param>
         /// <param name="pageRequestModel">分页查询请求模型</param>
         /// <returns></returns>
-        Task<(List<TEntity> data, PageModel pageInfo)> PagingAsync(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder, PageRequestModel pageRequestModel);
+        Task<(List<TEntity> data, PageModel pageInfo)> PagingAsync(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder, PageRequestModel pageRequestModel);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -326,7 +326,7 @@
         /// <param name="pageIndex">页数</param>
         /// <param name="pageSize">每页显示数量</param>
         /// <returns></returns>
-        (List<TEntity> data, PageModel pageInfo) Paging(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder, long pageIndex, long pageSize);
+        (List<TEntity> data, PageModel pageInfo) Paging(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder, long pageIndex, long pageSize);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -336,7 +336,7 @@
         /// <param name="pageIndex">页数</param>
         /// <param name="pageSize">每页显示数量</param>
         /// <returns></returns>
-        Task<(List<TEntity> data, PageModel pageInfo)> PagingAsync(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder, long pageIndex, long pageSize);
+        Task<(List<TEntity> data, PageModel pageInfo)> PagingAsync(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder, long pageIndex, long pageSize);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -370,7 +370,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        (List<TEntity> data, RangeModel rangeInfo) Range(RangeRequestModel rangeRequestModel, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder);
+        (List<TEntity> data, RangeModel rangeInfo) Range(RangeRequestModel rangeRequestModel, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -378,7 +378,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        Task<(List<TEntity> data, RangeModel rangeInfo)> RangeAsync(RangeRequestModel rangeRequestModel, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder);
+        Task<(List<TEntity> data, RangeModel rangeInfo)> RangeAsync(RangeRequestModel rangeRequestModel, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -433,7 +433,7 @@
         /// <param name="sortOrder">排序方式</param>
         /// <param name="rangeRequestModel">范围查询请求模型</param>
         /// <returns></returns>
-        (List<TEntity> data, RangeModel rangeInfo) Range(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder, RangeRequestModel rangeRequestModel);
+        (List<TEntity> data, RangeModel rangeInfo) Range(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder, RangeRequestModel rangeRequestModel);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -442,7 +442,7 @@
         /// <param name="sortOrder">排序方式</param>
         /// <param name="rangeRequestModel">范围查询请求模型</param>
         /// <returns></returns>
-        Task<(List<TEntity> data, RangeModel rangeInfo)> RangeAsync(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder, RangeRequestModel rangeRequestModel);
+        Task<(List<TEntity> data, RangeModel rangeInfo)> RangeAsync(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder, RangeRequestModel rangeRequestModel);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -470,7 +470,7 @@
         /// <param name="skip">页数</param>
         /// <param name="take">每页显示数量</param>
         /// <returns></returns>
-        (List<TEntity> data, RangeModel rangeInfo) Range(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder, long skip, long take);
+        (List<TEntity> data, RangeModel rangeInfo) Range(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder, long skip, long take);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -480,7 +480,7 @@
         /// <param name="skip">页数</param>
         /// <param name="take">每页显示数量</param>
         /// <returns></returns>
-        Task<(List<TEntity> data, RangeModel rangeInfo)> RangeAsync(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrderEnum sortOrder, long skip, long take);
+        Task<(List<TEntity> data, RangeModel rangeInfo)> RangeAsync(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, object>> orderExpression, SortOrder sortOrder, long skip, long take);
     }
     /// <summary>
     /// 仓储

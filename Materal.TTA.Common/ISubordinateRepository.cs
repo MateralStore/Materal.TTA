@@ -88,7 +88,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        List<T> FindFromSubordinate(Expression<Func<T, bool>> expression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder);
+        List<T> FindFromSubordinate(Expression<Func<T, bool>> expression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 查找
         /// </summary>
@@ -96,7 +96,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        Task<List<T>> FindFromSubordinateAsync(Expression<Func<T, bool>> expression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder);
+        Task<List<T>> FindFromSubordinateAsync(Expression<Func<T, bool>> expression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 查找
         /// </summary>
@@ -130,7 +130,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        List<T> FindFromSubordinate(FilterModel filterModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder);
+        List<T> FindFromSubordinate(FilterModel filterModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 查找
         /// </summary>
@@ -138,7 +138,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        Task<List<T>> FindFromSubordinateAsync(FilterModel filterModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder);
+        Task<List<T>> FindFromSubordinateAsync(FilterModel filterModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 获取第一条
         /// </summary>
@@ -220,7 +220,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        (List<T> data, PageModel pageInfo) PagingFromSubordinate(PageRequestModel pageRequestModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder);
+        (List<T> data, PageModel pageInfo) PagingFromSubordinate(PageRequestModel pageRequestModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -228,7 +228,7 @@
         /// <param name="orderExpression">排序表达式</param>
         /// <param name="sortOrder">排序方式</param>
         /// <returns></returns>
-        Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(PageRequestModel pageRequestModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder);
+        Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(PageRequestModel pageRequestModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -283,7 +283,7 @@
         /// <param name="sortOrder">排序方式</param>
         /// <param name="pageRequestModel">分页查询请求模型</param>
         /// <returns></returns>
-        (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, PageRequestModel pageRequestModel);
+        (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, PageRequestModel pageRequestModel);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -292,7 +292,7 @@
         /// <param name="sortOrder">排序方式</param>
         /// <param name="pageRequestModel">分页查询请求模型</param>
         /// <returns></returns>
-        Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, PageRequestModel pageRequestModel);
+        Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, PageRequestModel pageRequestModel);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -320,7 +320,7 @@
         /// <param name="pageIndex">页数</param>
         /// <param name="pageSize">每页显示数量</param>
         /// <returns></returns>
-        (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, long pageIndex, long pageSize);
+        (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, long pageIndex, long pageSize);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -330,7 +330,7 @@
         /// <param name="pageIndex">页数</param>
         /// <param name="pageSize">每页显示数量</param>
         /// <returns></returns>
-        Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, long pageIndex, long pageSize);
+        Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, long pageIndex, long pageSize);
     }
     /// <summary>
     /// 读写分离仓储

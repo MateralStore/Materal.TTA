@@ -96,14 +96,14 @@
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public virtual List<T> FindFromSubordinate(Expression<Func<T, bool>> expression) => FindFromSubordinate(expression, null, SortOrderEnum.Unspecified).ToList();
+        public virtual List<T> FindFromSubordinate(Expression<Func<T, bool>> expression) => FindFromSubordinate(expression, null, SortOrder.Unspecified).ToList();
         /// <summary>
         /// 查找
         /// </summary>
         /// <param name="expression"></param>
         /// <param name="orderExpression"></param>
         /// <returns></returns>
-        public List<T> FindFromSubordinate(Expression<Func<T, bool>> expression, Expression<Func<T, object>> orderExpression) => FindFromSubordinate(expression, orderExpression, SortOrderEnum.Ascending);
+        public List<T> FindFromSubordinate(Expression<Func<T, bool>> expression, Expression<Func<T, object>> orderExpression) => FindFromSubordinate(expression, orderExpression, SortOrder.Ascending);
         /// <summary>
         /// 查找
         /// </summary>
@@ -111,15 +111,15 @@
         /// <param name="orderExpression"></param>
         /// <param name="sortOrder"></param>
         /// <returns></returns>
-        public List<T> FindFromSubordinate(Expression<Func<T, bool>> expression, Expression<Func<T, object>>? orderExpression, SortOrderEnum sortOrder)
+        public List<T> FindFromSubordinate(Expression<Func<T, bool>> expression, Expression<Func<T, object>>? orderExpression, SortOrder sortOrder)
         {
             orderExpression ??= m => m.ID;
             return GetSubordinateResult(queryable =>
             {
                 List<T> result = sortOrder switch
                 {
-                    SortOrderEnum.Ascending => queryable.OrderBy(orderExpression).Where(expression).ToList(),
-                    SortOrderEnum.Descending => queryable.OrderByDescending(orderExpression).Where(expression).ToList(),
+                    SortOrder.Ascending => queryable.OrderBy(orderExpression).Where(expression).ToList(),
+                    SortOrder.Descending => queryable.OrderByDescending(orderExpression).Where(expression).ToList(),
                     _ => queryable.Where(expression).ToList(),
                 };
                 return result;
@@ -130,14 +130,14 @@
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public virtual async Task<List<T>> FindFromSubordinateAsync(Expression<Func<T, bool>> expression) => await FindFromSubordinateAsync(expression, null, SortOrderEnum.Unspecified);
+        public virtual async Task<List<T>> FindFromSubordinateAsync(Expression<Func<T, bool>> expression) => await FindFromSubordinateAsync(expression, null, SortOrder.Unspecified);
         /// <summary>
         /// 查找
         /// </summary>
         /// <param name="expression"></param>
         /// <param name="orderExpression"></param>
         /// <returns></returns>
-        public async Task<List<T>> FindFromSubordinateAsync(Expression<Func<T, bool>> expression, Expression<Func<T, object>> orderExpression) => await FindFromSubordinateAsync(expression, orderExpression, SortOrderEnum.Ascending);
+        public async Task<List<T>> FindFromSubordinateAsync(Expression<Func<T, bool>> expression, Expression<Func<T, object>> orderExpression) => await FindFromSubordinateAsync(expression, orderExpression, SortOrder.Ascending);
         /// <summary>
         /// 查找
         /// </summary>
@@ -145,15 +145,15 @@
         /// <param name="orderExpression"></param>
         /// <param name="sortOrder"></param>
         /// <returns></returns>
-        public async Task<List<T>> FindFromSubordinateAsync(Expression<Func<T, bool>> expression, Expression<Func<T, object>>? orderExpression, SortOrderEnum sortOrder)
+        public async Task<List<T>> FindFromSubordinateAsync(Expression<Func<T, bool>> expression, Expression<Func<T, object>>? orderExpression, SortOrder sortOrder)
         {
             orderExpression ??= m => m.ID;
             return await GetSubordinateResultAsync(async queryable =>
             {
                 List<T> result = sortOrder switch
                 {
-                    SortOrderEnum.Ascending => await queryable.OrderBy(orderExpression).Where(expression).ToListAsync(),
-                    SortOrderEnum.Descending => await queryable.OrderByDescending(orderExpression).Where(expression).ToListAsync(),
+                    SortOrder.Ascending => await queryable.OrderBy(orderExpression).Where(expression).ToListAsync(),
+                    SortOrder.Descending => await queryable.OrderByDescending(orderExpression).Where(expression).ToListAsync(),
                     _ => await queryable.Where(expression).ToListAsync(),
                 };
                 return result;
@@ -179,7 +179,7 @@
         /// <param name="orderExpression"></param>
         /// <param name="sortOrder"></param>
         /// <returns></returns>
-        public List<T> FindFromSubordinate(FilterModel filterModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder) => FindFromSubordinate(filterModel.GetSearchExpression<T>(), orderExpression, sortOrder);
+        public List<T> FindFromSubordinate(FilterModel filterModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder) => FindFromSubordinate(filterModel.GetSearchExpression<T>(), orderExpression, sortOrder);
         /// <summary>
         /// 查找
         /// </summary>
@@ -200,7 +200,7 @@
         /// <param name="orderExpression"></param>
         /// <param name="sortOrder"></param>
         /// <returns></returns>
-        public async Task<List<T>> FindFromSubordinateAsync(FilterModel filterModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder) => await FindFromSubordinateAsync(filterModel.GetSearchExpression<T>(), orderExpression, sortOrder);
+        public async Task<List<T>> FindFromSubordinateAsync(FilterModel filterModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder) => await FindFromSubordinateAsync(filterModel.GetSearchExpression<T>(), orderExpression, sortOrder);
         /// <summary>
         /// 获取第一条
         /// </summary>
@@ -285,7 +285,7 @@
         /// <param name="orderExpression"></param>
         /// <param name="sortOrder"></param>
         /// <returns></returns>
-        public (List<T> data, PageModel pageInfo) PagingFromSubordinate(PageRequestModel pageRequestModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder) => PagingFromSubordinate(pageRequestModel.GetSearchExpression<T>(), orderExpression, sortOrder, pageRequestModel);
+        public (List<T> data, PageModel pageInfo) PagingFromSubordinate(PageRequestModel pageRequestModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder) => PagingFromSubordinate(pageRequestModel.GetSearchExpression<T>(), orderExpression, sortOrder, pageRequestModel);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -317,7 +317,7 @@
         /// <param name="sortOrder"></param>
         /// <param name="pageRequestModel"></param>
         /// <returns></returns>
-        public virtual (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, PageRequestModel pageRequestModel) => PagingFromSubordinate(filterExpression, orderExpression, sortOrder, pageRequestModel.PageIndex, pageRequestModel.PageSize);
+        public virtual (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, PageRequestModel pageRequestModel) => PagingFromSubordinate(filterExpression, orderExpression, sortOrder, pageRequestModel.PageIndex, pageRequestModel.PageSize);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -326,7 +326,7 @@
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public virtual (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, long pageIndex, long pageSize) => PagingFromSubordinate(filterExpression, orderExpression, SortOrderEnum.Ascending, pageIndex, pageSize);
+        public virtual (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, long pageIndex, long pageSize) => PagingFromSubordinate(filterExpression, orderExpression, SortOrder.Ascending, pageIndex, pageSize);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -336,7 +336,7 @@
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public virtual (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, long pageIndex, long pageSize)
+        public virtual (List<T> data, PageModel pageInfo) PagingFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, long pageIndex, long pageSize)
         {
             return GetSubordinateResult(queryable =>
             {
@@ -344,8 +344,8 @@
                 PageModel pageModel = new(pageIndex, pageSize, queryable.Count());
                 List<T> result = sortOrder switch
                 {
-                    SortOrderEnum.Ascending => queryable.OrderBy(orderExpression).Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToList(),
-                    SortOrderEnum.Descending => queryable.OrderByDescending(orderExpression).Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToList(),
+                    SortOrder.Ascending => queryable.OrderBy(orderExpression).Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToList(),
+                    SortOrder.Descending => queryable.OrderByDescending(orderExpression).Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToList(),
                     _ => queryable.Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToList(),
                 };
                 return (result, pageModel);
@@ -371,7 +371,7 @@
         /// <param name="orderExpression"></param>
         /// <param name="sortOrder"></param>
         /// <returns></returns>
-        public async Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(PageRequestModel pageRequestModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder) => await PagingFromSubordinateAsync(pageRequestModel.GetSearchExpression<T>(), orderExpression, sortOrder, pageRequestModel);
+        public async Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(PageRequestModel pageRequestModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder) => await PagingFromSubordinateAsync(pageRequestModel.GetSearchExpression<T>(), orderExpression, sortOrder, pageRequestModel);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -403,7 +403,7 @@
         /// <param name="sortOrder"></param>
         /// <param name="pageRequestModel"></param>
         /// <returns></returns>
-        public virtual async Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, PageRequestModel pageRequestModel) => await PagingFromSubordinateAsync(filterExpression, orderExpression, sortOrder, pageRequestModel.PageIndex, pageRequestModel.PageSize);
+        public virtual async Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, PageRequestModel pageRequestModel) => await PagingFromSubordinateAsync(filterExpression, orderExpression, sortOrder, pageRequestModel.PageIndex, pageRequestModel.PageSize);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -412,7 +412,7 @@
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public virtual async Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, long pageIndex, long pageSize) => await PagingFromSubordinateAsync(filterExpression, orderExpression, SortOrderEnum.Ascending, pageIndex, pageSize);
+        public virtual async Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, long pageIndex, long pageSize) => await PagingFromSubordinateAsync(filterExpression, orderExpression, SortOrder.Ascending, pageIndex, pageSize);
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -422,7 +422,7 @@
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public virtual async Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, long pageIndex, long pageSize)
+        public virtual async Task<(List<T> data, PageModel pageInfo)> PagingFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, long pageIndex, long pageSize)
         {
             return await GetSubordinateResultAsync(async queryable =>
             {
@@ -430,8 +430,8 @@
                 PageModel pageModel = new(pageIndex, pageSize, await queryable.CountAsync());
                 List<T> result = sortOrder switch
                 {
-                    SortOrderEnum.Ascending => await queryable.OrderBy(orderExpression).Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToListAsync(),
-                    SortOrderEnum.Descending => await queryable.OrderByDescending(orderExpression).Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToListAsync(),
+                    SortOrder.Ascending => await queryable.OrderBy(orderExpression).Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToListAsync(),
+                    SortOrder.Descending => await queryable.OrderByDescending(orderExpression).Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToListAsync(),
                     _ => await queryable.Skip(pageModel.SkipInt).Take(pageModel.TakeInt).ToListAsync(),
                 };
                 return (result, pageModel);
@@ -457,7 +457,7 @@
         /// <param name="orderExpression"></param>
         /// <param name="sortOrder"></param>
         /// <returns></returns>
-        public (List<T> data, RangeModel rangeInfo) RangeFromSubordinate(RangeRequestModel rangeRequestModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder) => RangeFromSubordinate(rangeRequestModel.GetSearchExpression<T>(), orderExpression, sortOrder, rangeRequestModel);
+        public (List<T> data, RangeModel rangeInfo) RangeFromSubordinate(RangeRequestModel rangeRequestModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder) => RangeFromSubordinate(rangeRequestModel.GetSearchExpression<T>(), orderExpression, sortOrder, rangeRequestModel);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -489,7 +489,7 @@
         /// <param name="sortOrder"></param>
         /// <param name="rangeRequestModel"></param>
         /// <returns></returns>
-        public virtual (List<T> data, RangeModel rangeInfo) RangeFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, RangeRequestModel rangeRequestModel) => RangeFromSubordinate(filterExpression, orderExpression, sortOrder, rangeRequestModel.Skip, rangeRequestModel.Take);
+        public virtual (List<T> data, RangeModel rangeInfo) RangeFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, RangeRequestModel rangeRequestModel) => RangeFromSubordinate(filterExpression, orderExpression, sortOrder, rangeRequestModel.Skip, rangeRequestModel.Take);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -498,7 +498,7 @@
         /// <param name="skip"></param>
         /// <param name="take"></param>
         /// <returns></returns>
-        public virtual (List<T> data, RangeModel rangeInfo) RangeFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, long skip, long take) => RangeFromSubordinate(filterExpression, orderExpression, SortOrderEnum.Ascending, skip, take);
+        public virtual (List<T> data, RangeModel rangeInfo) RangeFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, long skip, long take) => RangeFromSubordinate(filterExpression, orderExpression, SortOrder.Ascending, skip, take);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -508,7 +508,7 @@
         /// <param name="skip"></param>
         /// <param name="take"></param>
         /// <returns></returns>
-        public virtual (List<T> data, RangeModel rangeInfo) RangeFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, long skip, long take)
+        public virtual (List<T> data, RangeModel rangeInfo) RangeFromSubordinate(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, long skip, long take)
         {
             return GetSubordinateResult(queryable =>
             {
@@ -516,8 +516,8 @@
                 RangeModel rangeModel = new(skip, take, queryable.Count());
                 List<T> result = sortOrder switch
                 {
-                    SortOrderEnum.Ascending => queryable.OrderBy(orderExpression).Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToList(),
-                    SortOrderEnum.Descending => queryable.OrderByDescending(orderExpression).Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToList(),
+                    SortOrder.Ascending => queryable.OrderBy(orderExpression).Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToList(),
+                    SortOrder.Descending => queryable.OrderByDescending(orderExpression).Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToList(),
                     _ => queryable.Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToList(),
                 };
                 return (result, rangeModel);
@@ -543,7 +543,7 @@
         /// <param name="orderExpression"></param>
         /// <param name="sortOrder"></param>
         /// <returns></returns>
-        public async Task<(List<T> data, RangeModel rangeInfo)> RangeFromSubordinateAsync(RangeRequestModel rangeRequestModel, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder) => await RangeFromSubordinateAsync(rangeRequestModel.GetSearchExpression<T>(), orderExpression, sortOrder, rangeRequestModel);
+        public async Task<(List<T> data, RangeModel rangeInfo)> RangeFromSubordinateAsync(RangeRequestModel rangeRequestModel, Expression<Func<T, object>> orderExpression, SortOrder sortOrder) => await RangeFromSubordinateAsync(rangeRequestModel.GetSearchExpression<T>(), orderExpression, sortOrder, rangeRequestModel);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -575,7 +575,7 @@
         /// <param name="sortOrder"></param>
         /// <param name="rangeRequestModel"></param>
         /// <returns></returns>
-        public virtual async Task<(List<T> data, RangeModel rangeInfo)> RangeFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, RangeRequestModel rangeRequestModel) => await RangeFromSubordinateAsync(filterExpression, orderExpression, sortOrder, rangeRequestModel.Skip, rangeRequestModel.Take);
+        public virtual async Task<(List<T> data, RangeModel rangeInfo)> RangeFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, RangeRequestModel rangeRequestModel) => await RangeFromSubordinateAsync(filterExpression, orderExpression, sortOrder, rangeRequestModel.Skip, rangeRequestModel.Take);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -584,7 +584,7 @@
         /// <param name="skip"></param>
         /// <param name="take"></param>
         /// <returns></returns>
-        public virtual async Task<(List<T> data, RangeModel rangeInfo)> RangeFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, long skip, long take) => await RangeFromSubordinateAsync(filterExpression, orderExpression, SortOrderEnum.Ascending, skip, take);
+        public virtual async Task<(List<T> data, RangeModel rangeInfo)> RangeFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, long skip, long take) => await RangeFromSubordinateAsync(filterExpression, orderExpression, SortOrder.Ascending, skip, take);
         /// <summary>
         /// 范围查询
         /// </summary>
@@ -594,7 +594,7 @@
         /// <param name="skip"></param>
         /// <param name="take"></param>
         /// <returns></returns>
-        public virtual async Task<(List<T> data, RangeModel rangeInfo)> RangeFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrderEnum sortOrder, long skip, long take)
+        public virtual async Task<(List<T> data, RangeModel rangeInfo)> RangeFromSubordinateAsync(Expression<Func<T, bool>> filterExpression, Expression<Func<T, object>> orderExpression, SortOrder sortOrder, long skip, long take)
         {
             return await GetSubordinateResultAsync(async queryable =>
             {
@@ -602,8 +602,8 @@
                 RangeModel rangeModel = new(skip, take, await queryable.CountAsync());
                 List<T> result = sortOrder switch
                 {
-                    SortOrderEnum.Ascending => await queryable.OrderBy(orderExpression).Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToListAsync(),
-                    SortOrderEnum.Descending => await queryable.OrderByDescending(orderExpression).Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToListAsync(),
+                    SortOrder.Ascending => await queryable.OrderBy(orderExpression).Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToListAsync(),
+                    SortOrder.Descending => await queryable.OrderByDescending(orderExpression).Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToListAsync(),
                     _ => await queryable.Skip(rangeModel.SkipInt).Take(rangeModel.TakeInt).ToListAsync(),
                 };
                 return (result, rangeModel);

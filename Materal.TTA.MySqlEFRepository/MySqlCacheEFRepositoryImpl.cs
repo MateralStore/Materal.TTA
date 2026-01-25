@@ -1,4 +1,4 @@
-﻿using Materal.Utils.Cache;
+﻿using Materal.Utils.Caching;
 using MySql.Data.MySqlClient;
 using System.Data;
 

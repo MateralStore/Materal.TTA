@@ -1,4 +1,4 @@
-﻿using Materal.Utils.Cache;
+﻿using Materal.Utils.Caching;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
