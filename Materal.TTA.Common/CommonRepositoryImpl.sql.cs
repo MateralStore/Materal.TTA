@@ -31,24 +31,24 @@ public partial class CommonRepositoryImpl<TEntity>
     /// </summary>
     /// <param name="tSql"></param>
     /// <returns></returns>
-    protected virtual void ExcuteSql(string tSql)
-        => ExcuteSql(tSql, null, null);
+    protected virtual void ExecuteSql(string tSql)
+        => ExecuteSql(tSql, null, null);
     /// <summary>
     /// 执行SQL语句
     /// </summary>
     /// <param name="tSql"></param>
     /// <param name="sqlParameters"></param>
     /// <returns></returns>
-    protected virtual void ExcuteSql(string tSql, ICollection<IDataParameter> sqlParameters)
-        => ExcuteSql(tSql, sqlParameters, null);
+    protected virtual void ExecuteSql(string tSql, ICollection<IDataParameter> sqlParameters)
+        => ExecuteSql(tSql, sqlParameters, null);
     /// <summary>
     /// 执行SQL语句
     /// </summary>
     /// <param name="tSql"></param>
     /// <param name="onHandler"></param>
     /// <returns></returns>
-    protected virtual void ExcuteSql(string tSql, Action<IDataReader> onHandler)
-        => ExcuteSql(tSql, null, onHandler);
+    protected virtual void ExecuteSql(string tSql, Action<IDataReader> onHandler)
+        => ExecuteSql(tSql, null, onHandler);
     /// <summary>
     /// 执行SQL语句
     /// </summary>
@@ -57,7 +57,7 @@ public partial class CommonRepositoryImpl<TEntity>
     /// <param name="onHandler"></param>
     /// <returns></returns>
     /// <exception cref="TTAException"></exception>
-    protected virtual void ExcuteSql(string tSql, ICollection<IDataParameter>? sqlParameters, Action<IDataReader>? onHandler)
+    protected virtual void ExecuteSql(string tSql, ICollection<IDataParameter>? sqlParameters, Action<IDataReader>? onHandler)
     {
         using IDbConnection sqlConnection = GetConnection();
         try
@@ -153,7 +153,7 @@ public partial class CommonRepositoryImpl<TEntity>
     protected virtual List<object[]> ExecuteQuerySql(string tSql, ICollection<IDataParameter>? sqlParameters, Func<IDataReader, object[]>? onHandler)
     {
         List<object[]> result = [];
-        ExcuteSql(tSql, sqlParameters, dr =>
+        ExecuteSql(tSql, sqlParameters, dr =>
         {
             if (onHandler is null)
             {
@@ -207,7 +207,7 @@ public partial class CommonRepositoryImpl<TEntity>
         where TModel : new()
     {
         List<TModel> result = [];
-        ExcuteSql(tSql, sqlParameters, dr =>
+        ExecuteSql(tSql, sqlParameters, dr =>
         {
             if (onHandler is null)
             {
