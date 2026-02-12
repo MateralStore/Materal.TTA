@@ -1,4 +1,4 @@
-﻿namespace Materal.TTA.EFRepository
+namespace Materal.TTA.EFRepository
 {
     /// <summary>
     /// EF读写分离仓储

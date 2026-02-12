@@ -1,4 +1,4 @@
-﻿namespace Materal.TTA.Common.Model
+namespace Materal.TTA.Common.Model
 {
     /// <summary>
     /// 数据库配置模型

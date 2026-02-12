@@ -1,4 +1,4 @@
-﻿using NetCore.AutoRegisterDi;
+using NetCore.AutoRegisterDi;
 
 namespace Materal.TTA.Common;
 

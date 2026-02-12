@@ -1,4 +1,4 @@
-﻿namespace Materal.TTA.Common
+namespace Materal.TTA.Common
 {
     /// <summary>
     /// 仓储

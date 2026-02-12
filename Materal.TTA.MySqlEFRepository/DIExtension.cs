@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using MySql.EntityFrameworkCore.Infrastructure;
 
 namespace Materal.TTA.MySqlEFRepository

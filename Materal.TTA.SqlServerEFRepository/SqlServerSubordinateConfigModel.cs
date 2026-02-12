@@ -1,4 +1,4 @@
-﻿namespace Materal.TTA.SqlServerEFRepository
+namespace Materal.TTA.SqlServerEFRepository
 {
     /// <summary>
     /// SQLServer从属配置

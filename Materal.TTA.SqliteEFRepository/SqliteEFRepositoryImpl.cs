@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 using System.Data;
 
 namespace Materal.TTA.SqliteEFRepository

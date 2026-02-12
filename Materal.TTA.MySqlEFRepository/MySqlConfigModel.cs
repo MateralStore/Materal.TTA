@@ -1,4 +1,4 @@
-﻿namespace Materal.TTA.MySqlEFRepository
+namespace Materal.TTA.MySqlEFRepository
 {
     /// <summary>
     /// MySql配置模型
