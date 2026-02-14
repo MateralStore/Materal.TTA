@@ -16,5 +16,7 @@ namespace Materal.TTA.SqlServerEFRepository
     {
         /// <inheritdoc/>
         protected override IDbConnection GetConnection(string connectionString) => new SqlConnection(connectionString);
+        /// <inheritdoc/>
+        protected override IDataParameter GetParameter(string name, object? value) => new SqlParameter(name, value);
     }
 }

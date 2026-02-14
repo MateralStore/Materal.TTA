@@ -41,8 +41,21 @@ namespace Materal.TTA.EFRepository
             try
             {
                 EntityEntry entity = DBContext.Entry(obj);
-                if (entity.State != EntityState.Detached) throw new MateralException($"实体已被标记为{entity.State},不能添加");
-                entity.State = EntityState.Added;
+                if (entity.State == EntityState.Added) return;
+                if (entity.State != EntityState.Detached)
+                {
+                    throw new MateralException($"实体已被标记为{entity.State},不能添加");
+                }
+                EntityEntry? existingEntry = GetTrackedEntry(entity);
+                if (existingEntry != null)
+                {
+                    existingEntry.CurrentValues.SetValues(obj);
+                    existingEntry.State = EntityState.Added;
+                }
+                else
+                {
+                    entity.State = EntityState.Added;
+                }
             }
             finally
             {
@@ -108,8 +121,21 @@ namespace Materal.TTA.EFRepository
             try
             {
                 EntityEntry entity = DBContext.Entry(obj);
-                if (entity.State != EntityState.Detached) throw new MateralException($"实体已被标记为{entity.State},不能修改");
-                entity.State = EntityState.Modified;
+                if (entity.State == EntityState.Modified) return;
+                if (entity.State != EntityState.Detached)
+                {
+                    throw new MateralException($"实体已被标记为{entity.State},不能修改");
+                }
+                EntityEntry? existingEntry = GetTrackedEntry(entity);
+                if (existingEntry != null)
+                {
+                    existingEntry.CurrentValues.SetValues(obj);
+                    existingEntry.State = EntityState.Modified;
+                }
+                else
+                {
+                    entity.State = EntityState.Modified;
+                }
             }
             finally
             {
@@ -175,8 +201,20 @@ namespace Materal.TTA.EFRepository
             try
             {
                 EntityEntry entity = DBContext.Entry(obj);
-                if (entity.State != EntityState.Detached) throw new MateralException($"实体已被标记为{entity.State},不能删除");
-                entity.State = EntityState.Deleted;
+                if (entity.State == EntityState.Deleted) return;
+                if (entity.State != EntityState.Detached)
+                {
+                    throw new MateralException($"实体已被标记为{entity.State},不能删除");
+                }
+                EntityEntry? existingEntry = GetTrackedEntry(entity);
+                if (existingEntry != null)
+                {
+                    existingEntry.State = EntityState.Deleted;
+                }
+                else
+                {
+                    entity.State = EntityState.Deleted;
+                }
             }
             finally
             {
@@ -290,6 +328,24 @@ namespace Materal.TTA.EFRepository
         /// <exception cref="MateralException"></exception>
         public virtual TRepository GetRepository<TRepository>()
             where TRepository : IRepository => ServiceProvider.GetService<TRepository>() ?? throw new MateralException("获取仓储失败");
+        /// <summary>
+        /// 获取已跟踪的同主键实体
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
+        private EntityEntry? GetTrackedEntry(EntityEntry entry)
+        {
+            object?[]? keyValues = entry.Metadata.FindPrimaryKey()?.Properties
+                .Select(p => entry.Property(p.Name).CurrentValue)
+                .ToArray();
+            if (keyValues == null || keyValues.Length == 0) return null;
+            return DBContext.ChangeTracker.Entries()
+                .FirstOrDefault(e => e.Entity != entry.Entity
+                    && e.Metadata == entry.Metadata
+                    && e.Metadata.FindPrimaryKey()!.Properties
+                        .Select(p => e.Property(p.Name).CurrentValue)
+                        .SequenceEqual(keyValues));
+        }
         /// <summary>
         /// 取消所有跟踪的实例
         /// </summary>

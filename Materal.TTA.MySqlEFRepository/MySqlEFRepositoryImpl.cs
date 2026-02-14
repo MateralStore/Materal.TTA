@@ -16,5 +16,7 @@ namespace Materal.TTA.MySqlEFRepository
     {
         /// <inheritdoc/>
         protected override IDbConnection GetConnection(string connectionString) => new MySqlConnection(connectionString);
+        /// <inheritdoc/>
+        protected override IDataParameter GetParameter(string name, object? value) => new MySqlParameter(name, value);
     }
 }

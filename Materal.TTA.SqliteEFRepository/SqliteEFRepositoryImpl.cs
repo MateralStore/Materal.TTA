@@ -16,5 +16,8 @@ namespace Materal.TTA.SqliteEFRepository
     {
         /// <inheritdoc/>
         protected override IDbConnection GetConnection(string connectionString) => new SqliteConnection(connectionString);
+
+        /// <inheritdoc/>
+        protected override IDataParameter GetParameter(string name, object? value) => new SqliteParameter(name, value);
     }
 }

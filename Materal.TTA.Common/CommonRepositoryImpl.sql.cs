@@ -195,7 +195,7 @@ public partial class CommonRepositoryImpl<TEntity>
     /// <returns></returns>
     protected virtual List<TModel> ExcuteQuerySql<TModel>(string tSql, Func<IDataReader, TModel> onHandler)
         where TModel : new()
-        => ExcuteQuerySql<TModel>(tSql, null, onHandler);
+        => ExcuteQuerySql(tSql, null, onHandler);
     /// <summary>
     /// 执行SQL语句
     /// </summary>
@@ -281,4 +281,11 @@ public partial class CommonRepositoryImpl<TEntity>
         return result;
     }
     #endregion
+    /// <summary>
+    /// 获取参数
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    protected abstract IDataParameter GetParameter(string name, object? value);
 }
